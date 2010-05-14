@@ -10,7 +10,8 @@ Here are some important notes:
   * You can currently access the mongo version of this API at http://awp.cs.usfca.edu/
 
 = Syntax Key =
-{{{[]: an Array (or List)
+{{{
+[]: an Array (or List)
 {<key>:<value>}: a dictionary
 <workflow_id>: The id of a specific workflow. Example: " 1degree_1nodes_skynet"
 <job_id>: THe id of a specific job. Example: " mDiffFit_ID000067"
@@ -19,14 +20,18 @@ Here are some important notes:
 <seconds>: integer of time in seconds
 <int>: integer
 <string>: string
-<timestamp>: float, time since epoch}}}
+<timestamp>: float, time since epoch
+}}}
 
 = Available URI's =
-{{{URI: /workflow/unique
+{{{
+URI: /workflow/unique
 Returns: [{"id":<workflow_id>, "state":<stateType>, "lastEvent":<timestamp>},...]
-Options: timeCeiling: <timestamp>}}}
+Options: timeCeiling: <timestamp>
+}}}
 
-{{{URI:/workflow/<workflow_id>
+{{{
+URI:/workflow/<workflow_id>
 Returns: {"id":<workflow_id>,
           "state":<stateType>,
           "jobStatus": {"submitted":<int>,
@@ -37,31 +42,41 @@ Returns: {"id":<workflow_id>,
           "submitted":<time>,
           "runtime":<seconds>,
           "lastEvent":<timestamp> }
-Options: timeCeiling: <timestamp>}}}
+Options: timeCeiling: <timestamp>
+}}}
 
-{{{URI:/workflow/<workflow_id>/jobs
+{{{
+URI:/workflow/<workflow_id>/jobs
 Returns: [
           {"id":<workflow_id>, "state":<stateType>, "submitted":<time>, "runtime":<seconds>},
           ...
          ]
-Options: timeCeiling: <timestamp>}}}
+Options: timeCeiling: <timestamp>
+}}}
 
-{{{URI:/workflow/<workflow_id>/<job_id>
+{{{
+URI:/workflow/<workflow_id>/<job_id>
 Returns: {"id":<workflow_id>, "state":<stateType>, "submitted":<time>, "runtime":<seconds>}
-Options: timeCeiling: <timestamp>}}}
+Options: timeCeiling: <timestamp>
+}}}
 
-{{{URI:/workflow/<workflow_id>/<job_id>/parents
-Returns: [<job_id>, ...]}}}
+{{{
+URI:/workflow/<workflow_id>/<job_id>/parents
+Returns: [<job_id>, ...]
+}}}
 
-{{{URI:/workflow/<workflow_id>/<job_id>/children
-Returns: [<job_id>, ...]}}}
+{{{
+URI:/workflow/<workflow_id>/<job_id>/children
+Returns: [<job_id>, ...]
+}}}
 
 
 = Sample Queries =
 ==Get Workflow Data==
 URI: http://awp.cs.usfca.edu/workflow/164c08e1-094f-41bc-85b5-493bfadbd23a
 Response:
-{{{{
+{{{
+{
     submitted: 1268163288
     lastEvent: 1268164295
     state: "IMAGE_SIZE"
@@ -73,12 +88,14 @@ Response:
     }
     runtime: 1007
     id: "164c08e1-094f-41bc-85b5-493bfadbd23a"
-}}}}
+}
+}}}
 
 ==Get workflow data at a particular snapshot in time==
 URI: http://awp.cs.usfca.edu/workflow/164c08e1-094f-41bc-85b5-493bfadbd23a?timeCeiling=1268163388
 Response:
-{{{{
+{{{
+{
     submitted: 1268163288
     lastEvent: 1268163369
     state: "SUBMIT"
@@ -90,14 +107,17 @@ Response:
     }
     runtime: 81
     id: "164c08e1-094f-41bc-85b5-493bfadbd23a"
-}}}}
+}
+}}}
 
 ==Get data for a particular job==
 URI: http://awp.cs.usfca.edu/workflow/164c08e1-094f-41bc-85b5-493bfadbd23a/merge_ligo-lalapps_coire-1.0_PID2_ID25
 Response:
-{{{{
+{{{
+{
     state: "JOB_SUCCESS"
     runtime: 182
     id: "merge_ligo-lalapps_coire-1.0_PID2_ID25"
     submitted: 1268163501
-}}}}
+}
+}}}
