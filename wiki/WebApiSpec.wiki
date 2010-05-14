@@ -28,6 +28,8 @@ Here are some important notes:
 URI: /workflow/unique
 Returns: [{"id":<workflow_id>, "state":<stateType>, "lastEvent":<timestamp>},...]
 Options: timeCeiling: <timestamp>
+         limit: <int>
+         page: <int>
 }}}
 
 {{{
@@ -52,6 +54,8 @@ Returns: [
           ...
          ]
 Options: timeCeiling: <timestamp>
+         limit: <int>
+         page: <int>
 }}}
 
 {{{
@@ -63,11 +67,13 @@ Options: timeCeiling: <timestamp>
 {{{
 URI:/workflow/<workflow_id>/<job_id>/parents
 Returns: [<job_id>, ...]
+Options: timeCeiling: <timestamp>
 }}}
 
 {{{
 URI:/workflow/<workflow_id>/<job_id>/children
 Returns: [<job_id>, ...]
+Options: timeCeiling: <timestamp>
 }}}
 
 
@@ -89,6 +95,25 @@ Response:
     runtime: 1007
     id: "164c08e1-094f-41bc-85b5-493bfadbd23a"
 }
+}}}
+
+==Get Data on 2 current workflows==
+URI: http://awp.cs.usfca.edu/workflow/all?limit=2
+Response:
+{{{
+[
+    {
+      lastEvent: 1268164295
+      state: "IMAGE_SIZE"
+      id: "164c08e1-094f-41bc-85b5-493bfadbd23a"
+    },
+    {
+      lastEvent: 1268164851
+      state: "JOB_TERMINATED"
+      id: "165bc398-b8c2-4bbd-bd52-05e84e2d2bfa"
+    }
+
+]
 }}}
 
 ==Get workflow data at a particular snapshot in time==
