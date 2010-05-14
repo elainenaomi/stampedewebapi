@@ -25,7 +25,7 @@ Here are some important notes:
 
 = Available URI's =
 {{{
-URI: /workflow/unique
+URI: /workflow/unique (alternative: /workflow/all)
 Returns: [{"id":<workflow_id>, "state":<stateType>, "lastEvent":<timestamp>},...]
 Options: timeCeiling: <timestamp>
          limit: <int>
