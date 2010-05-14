@@ -1,0 +1,34 @@
+$def with (content)
+<html>
+<head>
+<title>Netlogger</title>
+<!--Include YUI Loader: -->
+    <script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/yuiloader/yuiloader-min.js"></script>
+
+	<!--Use YUI Loader to bring in your other dependencies: -->
+	<script type="text/javascript">
+	// Instantiate and configure YUI Loader:
+	(function() {
+	    var loader = new YAHOO.util.YUILoader({
+	        base: "",
+	        require: ["yahoo","event","dom", "yahoo-dom-event","animation","autocomplete","button","calendar","charts","connection","connectioncore","datasource","datatable","datemath","dragdrop","element","event-delegate","event-mouseenter","get","imageloader","json","menu","paginator","selector","slider","swf"],
+	        loadOptional: true,
+	        combine: true,
+	        filter: "DEBUG",
+	        allowRollup: true,
+	        onSuccess: function() {
+	    	   if(loadChart){loadChart();}
+	        }
+	    });
+	
+	// Load the files using the insert() method.
+	loader.insert();
+	})();
+	</script>
+	
+	<link rel="stylesheet" type="text/css" href="/static/layout.css" />
+</head>
+<body>
+$:content
+</body>
+</html>
