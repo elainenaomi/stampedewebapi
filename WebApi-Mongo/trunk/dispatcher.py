@@ -10,7 +10,7 @@ from controllers import workflow
 #from controllers import benchmarkQueries
 #from controllers import benchmarkMySQLQueries
 
-web.config.debug = False
+#web.config.debug = False
 
 urls = (
         '/(.*)', 'index'

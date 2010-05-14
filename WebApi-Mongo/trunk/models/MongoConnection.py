@@ -29,7 +29,7 @@ class MongoConnection(object):
         table = self._getCollection(collection)
         return table.find()
         
-    def find(self, collection, query, size=10, page=1, fields=[]):
+    def find(self, collection, query, size=10, page=1, fields=[], forceFindMany=False):
         skip=(page-1)*size
         table = self._getCollection(collection)
         params = {}
@@ -39,7 +39,7 @@ class MongoConnection(object):
             params["limit"]=size
             params["skip"]=skip
         
-        if size == 1:
+        if not forceFindMany and size == 1:
             params["spec_or_object_id"]=query
             return table.find_one(**params)
         else:
