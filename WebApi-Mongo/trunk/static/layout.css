@@ -1,0 +1,20 @@
+
+.benchmarkColumn{
+    float:left;
+    width:25%;
+    border: black solid 1px;
+    margin:3px;
+    padding:2px;
+}
+
+.benchmarkChart{
+    float:left;
+    width:45%;
+    border: black solid 1px;
+    margin:3px;
+    padding:2px;
+}
+
+.clear{
+    clear:both
+}

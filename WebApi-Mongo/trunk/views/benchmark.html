@@ -1,0 +1,74 @@
+$def with ()
+<script type="text/javascript" src="/static/benchmarkSuite.js"></script>
+
+<h2>Benchmark Suite</h2>
+<div><a href="#" onclick="var elems=YAHOO.util.Dom.getElementsByClassName('benchRunStarter', 'a');for(var elem in elems){elems[elem].onclick();}">Run All Tests</a></div>
+<div class="clear"></div>
+<div id="mongoQueries" class="benchmarkColumn">
+    <h3>Mongo</h3>
+    <div class="benchmarkQuery">
+	    <a href="#" class="benchRunStarter" onclick="excecuteBenchmarkQuery(document.getElementById('totalJobResult'), 'http://awp.cs.usfca.edu/benchmarkQueries/totalJobs')">Total Jobs</a>
+	    <div id="totalJobResult" class="resultBox"></div>
+	</div>
+	
+	<div class="benchmarkQuery">
+        <a href="#" class="benchRunStarter" onclick="excecuteBenchmarkQuery(document.getElementById('jobsPerDay'), 'http://awp.cs.usfca.edu/benchmarkQueries/jobsPerDay')">Jobs Per Day</a>
+        <div id="jobsPerDay" class="resultBox"></div>
+    </div>
+    
+    <div class="benchmarkQuery">
+        <a href="#" class="benchRunStarter" onclick="excecuteBenchmarkQuery(document.getElementById('jobsOnHost'), 'http://awp.cs.usfca.edu/benchmarkQueries/jobsOnHost')">Jobs on Host</a>
+        <div id="jobsOnHost" class="resultBox"></div>
+    </div>
+    
+    <div class="benchmarkQuery">
+        <a href="#" class="benchRunStarter" onclick="excecuteBenchmarkQuery(document.getElementById('totalJobsSucceeded'), 'http://awp.cs.usfca.edu/benchmarkQueries/totalJobsSucceeded')">Total Jobs Succeeded</a>
+        <div id="totalJobsSucceeded" class="resultBox"></div>
+    </div>
+    
+    <div class="benchmarkQuery">
+        <a href="#" class="benchRunStarter" onclick="excecuteBenchmarkQuery(document.getElementById('breakdownOfJobs'), 'http://awp.cs.usfca.edu/benchmarkQueries/breakdownOfJobs')">Breakdown Of Jobs</a>
+        <div id="breakdownOfJobs" class="resultBox"></div>
+    </div>
+    
+    <div class="benchmarkQuery">
+        <a href="#" class="benchRunStarter" onclick="excecuteBenchmarkQuery(document.getElementById('totalRuntimeOfJobs'), 'http://awp.cs.usfca.edu/benchmarkQueries/totalRuntimeOfJobs')">Total Runtime of Jobs</a>
+        <div id="totalRuntimeOfJobs" class="resultBox"></div>
+    </div>
+    
+</div>
+
+<div class="benchmarkChart"><h3>Results</h3><div id="chart">Loading Bar Chart</div></div>
+
+<div id="mongoQueries" class="benchmarkColumn">
+    <h3>Mysql</h3>
+    <div class="benchmarkQuery">
+        <a href="#" class="benchRunStarter" onclick="excecuteBenchmarkQuery(document.getElementById('totalJobResultMySql'), 'http://awp.cs.usfca.edu/benchmarkMySQLQueries/totalJobs')">Total Jobs</a>
+        <div id="totalJobResultMySql" class="resultBox"></div>
+    </div>
+    
+    <div class="benchmarkQuery">
+        <a href="#" class="benchRunStarter" onclick="excecuteBenchmarkQuery(document.getElementById('jobsPerDayMySql'), 'http://awp.cs.usfca.edu/benchmarkMySQLQueries/jobsPerDay')">Jobs Per Day</a>
+        <div id="jobsPerDayMySql" class="resultBox"></div>
+    </div>
+    
+    <div class="benchmarkQuery">
+        <a href="#" class="benchRunStarter" onclick="excecuteBenchmarkQuery(document.getElementById('jobsOnHostMySql'), 'http://awp.cs.usfca.edu/benchmarkMySQLQueries/jobsOnHost')">Jobs on Host</a>
+        <div id="jobsOnHostMySql" class="resultBox"></div>
+    </div>
+    
+    <div class="benchmarkQuery">
+        <a href="#" class="benchRunStarter" onclick="excecuteBenchmarkQuery(document.getElementById('totalJobsSucceededMySql'), 'http://awp.cs.usfca.edu/benchmarkMySQLQueries/totalJobsSucceeded')">Total Jobs Succeeded</a>
+        <div id="totalJobsSucceededMySql" class="resultBox"></div>
+    </div>
+    
+    <div class="benchmarkQuery">
+        <a href="#" class="benchRunStarter" onclick="excecuteBenchmarkQuery(document.getElementById('breakdownOfJobsMySql'), 'http://awp.cs.usfca.edu/benchmarkMySQLQueries/breakdownOfJobs')">Breakdown Of Jobs</a>
+        <div id="breakdownOfJobsMySql" class="resultBox"></div>
+    </div>
+    
+    <div class="benchmarkQuery">
+        <a href="#" class="benchRunStarter" onclick="excecuteBenchmarkQuery(document.getElementById('totalRuntimeOfJobsMySql'), 'http://awp.cs.usfca.edu/benchmarkMySQLQueries/totalRuntimeOfJobs')">Total Runtime of Jobs</a>
+        <div id="totalRuntimeOfJobsMySql" class="resultBox"></div>
+    </div>
+</div>
