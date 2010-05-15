@@ -1,0 +1,12 @@
+#PieGraph for one single workflowID
+
+= Introduction =
+
+Here is a pie graph for one single workflow id, and we will modify it soon.
+
+
+= Details =
+
+ ==Initial Graph==
+Firstly, input a workflow id, here is "7113f605-aca8-461e-b734-39a357c09ed7", and show its pie graph.
+[http://code.google.com/ http://code.google.com/images/FirstClick.png]
