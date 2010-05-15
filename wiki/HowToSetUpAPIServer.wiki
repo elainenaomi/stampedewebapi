@@ -21,7 +21,7 @@ test/basic command:
 {{{
 ... ? ...
 }}}
-Config follow [http://code.google.com/p/stampedewebapi/wiki/HowToSetUpApacheModWsgi How to setup Apache Mod Wsgi] 
+Config follow [http://code.google.com/p/stampedewebapi/wiki/HowToSetUpApacheModWsgi How to setup Apache Mod Wsgi]  on Linux server use *httpd* instead of *apache2*
 ===Install Mongo DB===
 {{{        
 sudo yum install mongo-server mongo          
