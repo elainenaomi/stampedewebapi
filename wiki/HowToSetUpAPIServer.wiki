@@ -16,7 +16,10 @@ sudo /etc/init.d/httpd start
 ===Install mod_wsgi (WSGI interface for python web applications in Apache)===
 {{{        
 sudo yum install mod_wsgi.x86_64
-test: ...
+}}}
+test/basic command:
+{{{
+... ? ...
 }}}
 Config follow [http://code.google.com/p/stampedewebapi/wiki/HowToSetUpApacheModWsgi How to setup Apache Mod Wsgi] 
 ===Install Mongo DB===
