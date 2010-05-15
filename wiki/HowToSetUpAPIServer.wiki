@@ -5,10 +5,10 @@ Set up web API server
 
 = On Linux server =
 
-==Install Python 2.6 ( required by Mongo db)==
+===Install Python 2.6 ( required by Mongo db)===
                 
 
-==Install Apache HTTP Server==
+===Install Apache HTTP Server===
 {{{
 sudo yum -y install httpd
 }}}
@@ -17,13 +17,13 @@ test:
 sudo /etc/init.d/httpd start
 }}}
 
-==Install mod_wsgi (WSGI interface for python web applications in Apache)==
+===Install mod_wsgi (WSGI interface for python web applications in Apache)===
 {{{        
 sudo yum install mod_wsgi.x86_64
 test: ...
 }}}
 Config follow [http://code.google.com/p/stampedewebapi/wiki/HowToSetUpApacheModWsgi How to setup Apache Mod Wsgi] 
-==Install Mongo DB==
+===Install Mongo DB===
 {{{        
 sudo yum install mongo-server mongo          
 }}}
@@ -34,7 +34,7 @@ sudo mongod &
 ## open mongo command line tool  
 mongo
 }}}
-==Install mySQL DB==
+===Install mySQL DB===
 {{{
 sudo yum install mysql         
 }}}
@@ -47,7 +47,7 @@ test/basic command:
 ## default username 'root' password ''            
 mysql -u root -p
 }}}
-==Install easy_install ( python setup tools)==
+===Install easy_install ( python setup tools)===
 {{{       
 sudo yum install python-setuptools
 sudo easy_install pymongo
