@@ -1,8 +1,4 @@
-#summary One-sentence summary of this page.
 #labels Phase-Requirements,Phase-Implementation
-Set up web API server
-
-
 = On Linux server =
 
 ===Install Python 2.6 ( required by Mongo db)===
