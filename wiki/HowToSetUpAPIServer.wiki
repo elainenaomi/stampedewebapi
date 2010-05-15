@@ -1,9 +1,9 @@
 #labels Phase-Requirements,Phase-Implementation
+Set up netlogger web API server
+
 = On Linux server =
 
 ===Install Python 2.6 ( required by Mongo db)===
-                
-
 ===Install Apache HTTP Server===
 {{{
 sudo yum -y install httpd
