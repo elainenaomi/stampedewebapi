@@ -1,0 +1,54 @@
+#summary One-sentence summary of this page.
+#labels Phase-Requirements,Phase-Implementation
+Set up web API server
+
+
+= On Linux server =
+
+==Install Python 2.6 ( required by Mongo db)==
+                
+
+==Install Apache HTTP Server==
+{{{
+sudo yum -y install httpd
+}}}
+test: 
+{{{
+sudo /etc/init.d/httpd start
+}}}
+
+==Install mod_wsgi (WSGI interface for python web applications in Apache)==
+{{{        
+sudo yum install mod_wsgi.x86_64
+test: ...
+}}}
+Config follow [http://code.google.com/p/stampedewebapi/wiki/HowToSetUpApacheModWsgi How to setup Apache Mod Wsgi] 
+==Install Mongo DB==
+{{{        
+sudo yum install mongo-server mongo          
+}}}
+test/basic command: 
+{{{
+## start mongo server in background
+sudo mongod &                 
+## open mongo command line tool  
+mongo
+}}}
+==Install mySQL DB==
+{{{
+sudo yum install mysql         
+}}}
+test/basic command:
+{{{
+## start mysql server
+/sbin/service mysqld start 
+## stop                 
+/sbin/service mysqld stop                  
+## default username 'root' password ''            
+mysql -u root -p
+}}}
+==Install easy_install ( python setup tools)==
+{{{       
+sudo yum install python-setuptools
+sudo easy_install pymongo
+}}}
