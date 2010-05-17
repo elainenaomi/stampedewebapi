@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="initApp()">
+	<!-- Define the HTTP service -->
+	<mx:HTTPService 
+		id="dataService"
+		resultFormat="e4x"
+		result="dataResultHandler(event);"
+		fault="dataFaultHandler(event);"
+		/>
+	
+	<!-- Controller -->
+	<mx:Script>
+		<![CDATA[
+			import flash.net.navigateToURL;
+			
+			import json.JParser;
+			
+			import mx.charts.DateTimeAxis;
+			import mx.charts.LegendItem;
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.managers.BrowserManager;
+			import mx.managers.IBrowserManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.utils.ObjectUtil;
+			import mx.utils.URLUtil;
+			
+			private var bm:IBrowserManager;
+			[Bindable] 
+			private var statusData:ArrayCollection = new ArrayCollection();
+			
+			
+			private var timer:Timer = new Timer(10000);
+			
+			public function initApp():void {
+				bm = BrowserManager.getInstance();                
+				trace('sending service call');
+				dataService.url="http://awp.cs.usfca.edu/workflow/164c08e1-094f-41bc-85b5-493bfadbd23a";
+				timer.addEventListener("timer", timerHandler);
+				dataService.send();
+			}
+			
+			private function dataResultHandler(event:ResultEvent):void
+			{
+				trace(' service call');
+				var jparser:JParser = new JParser();
+				var obj:Object = JParser.decode(event.result.toString());
+				
+                var time1:int =obj['submitted'] +1;
+                var time2:int =obj['lastEvent'];
+                var runtime:int =obj['runtime'];
+                var incr:int =runtime/100;
+                
+				var i:int
+				for (i=time1;i<=time2+incr;i=i+incr){
+					var service:HTTPService = new HTTPService();
+					service.url = "http://awp.cs.usfca.edu/workflow/164c08e1-094f-41bc-85b5-493bfadbd23a?timeCeiling=" + i;
+					service.send();
+					service.addEventListener(ResultEvent.RESULT, handler);
+				}
+				
+			}
+	
+		
+			private function handler(evt:ResultEvent):void{
+				var jparser:JParser = new JParser();
+				var alldata:Object = JParser.decode(evt.result.toString());
+				statusData.addItem(alldata['jobStatus']);
+				
+		
+			}
+			private function dataFaultHandler(event:FaultEvent):void
+			{
+				Alert.show(event.fault.message , "Could not load data");
+			}
+			
+			public function timerHandler(event:TimerEvent):void {
+				dataService.send();
+			}
+		]]>
+	</mx:Script>
+
+	  <mx:Panel title="Job Status Vs Time Chart" width="100%" height="100%">
+     <mx:AreaChart id="myChart"
+        dataProvider="{statusData}" 
+        showDataTips="true" 
+        type="stacked" width="100%" height="100%"
+     >
+        <mx:horizontalAxis>
+           <mx:CategoryAxis 
+               categoryField="Month"
+           />
+        </mx:horizontalAxis>
+        <mx:series>
+           <mx:AreaSeries 
+                yField="failed" 
+                displayName="failed"
+           />
+           <mx:AreaSeries 
+                yField="running" 
+                displayName="running"
+           />
+                      <mx:AreaSeries 
+                yField="completed" 
+                displayName="completed"
+           />
+                      <mx:AreaSeries 
+                yField="submitted" 
+                displayName="submitted"
+           />
+        </mx:series>
+     </mx:AreaChart>
+     <mx:Legend dataProvider="{myChart}" width="100%" direction="horizontal"/>
+  </mx:Panel>
+</mx:Application>
