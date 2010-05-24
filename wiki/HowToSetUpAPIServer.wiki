@@ -29,7 +29,9 @@ tar -zxvf mod_wsgi-3.2.tar.gz
 ## make sure that we have python 2.6 configuration in /etc/ld.so.conf.d/ and run
 sudo /sbin/ldconfig
 
-
+./configure
+make
+sudo make install
 }}}
 test/basic command:
 {{{
