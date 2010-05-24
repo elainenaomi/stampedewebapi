@@ -1,6 +1,4 @@
 #labels Phase-Requirements,Phase-Implementation
-#How to set up web api server
-
 Set up netlogger web API server
 
 = On Linux server =
