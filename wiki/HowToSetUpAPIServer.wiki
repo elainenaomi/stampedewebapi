@@ -52,6 +52,13 @@ mongo
 ===Install mySQL DB===
 {{{
 sudo yum install mysql mysql-server     
+## required python mysql driver and sqlAlchemy
+sudo yum install MySQL-python
+wget http://prdownloads.sourceforge.net/sqlalchemy/SQLAlchemy-0.6.0.tar.gz?download
+tar -xvf SQLAlchemy-0.6.0.tar.gz 
+cd SQLAlchemy-0.6.0
+python setup.py build
+sudo python setup.py install
 }}}
 test/basic command:
 {{{
@@ -62,6 +69,9 @@ test/basic command:
 ## default username 'root' password ''            
 mysql -u root -p
 }}}
+
+
+
 ===Install svn, netlogger,stampedeWebAPI ===
 {{{
 yum -y install subversion
