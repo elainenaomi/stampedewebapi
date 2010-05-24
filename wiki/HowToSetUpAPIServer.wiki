@@ -62,6 +62,12 @@ test/basic command:
 ## default username 'root' password ''            
 mysql -u root -p
 }}}
+===Install svn, netlogger,stampedeWebAPI ===
+{{{
+yum -y install subversion
+sudo svn co https://www.cs.usfca.edu/svn/netlogger /var/local/netloggerAPI
+sudo ln -s /var/local/netloggerAPI/ /var/www/netloggerAPI
+}}}
 ===Install easy_install ( python setup tools)===
 {{{       
 sudo yum install python-setuptools
