@@ -6,6 +6,12 @@ Set up netlogger web API server
 = On Linux server =
 
 ===Install Python 2.6 ( required by Mongo db)===
+{{{
+./configure --enable-shared
+make
+make install
+}}}
+
 ===Install Apache HTTP Server===
 {{{
 sudo yum -y install httpd
@@ -17,7 +23,13 @@ sudo /etc/init.d/httpd start
 
 ===Install mod_wsgi (WSGI interface for python web applications in Apache)===
 {{{        
-sudo yum install mod_wsgi.x86_64
+wget http://code.google.com/p/modwsgi/downloads/detail?name=mod_wsgi-3.2.tar.gz&can=2&q=
+tar -zxvf mod_wsgi-3.2.tar.gz
+
+## make sure that we have python 2.6 configuration in /etc/ld.so.conf.d/ and run
+sudo /sbin/ldconfig
+
+
 }}}
 test/basic command:
 {{{
