@@ -27,7 +27,7 @@ wget http://code.google.com/p/modwsgi/downloads/detail?name=mod_wsgi-3.2.tar.gz&
 tar -zxvf mod_wsgi-3.2.tar.gz
 
 ## make sure that we have python 2.6 configuration in /etc/ld.so.conf.d/ and run
-sudo /sbin/ldconfig
+	sudo /sbin/ldconfig
 
 ./configure
 make
@@ -37,28 +37,39 @@ test/basic command:
 {{{
 ... ? ...
 }}}
-Config follow [http://code.google.com/p/stampedewebapi/wiki/HowToSetUpApacheModWsgi How to setup Apache Mod Wsgi]  on Linux server use *httpd* instead of *apache2*
+	Config follow [http://code.google.com/p/stampedewebapi/wiki/HowToSetUpApacheModWsgi How to setup Apache Mod Wsgi]  on Linux server use *httpd* instead of *apache2*
 ===Install Mongo DB===
 {{{        
-sudo yum install mongo-server mongo          
+	sudo yum install mongo-server mongo          
 }}}
 test/basic command: 
 {{{
 ## start mongo server in background
-sudo mongod &                 
+	sudo mongod &                 
 ## open mongo command line tool  
-mongo
+	mongo
 }}}
 ===Install mySQL DB===
 {{{
 sudo yum install mysql mysql-server     
+
 ## required python mysql driver and sqlAlchemy
-sudo yum install MySQL-python
-wget http://prdownloads.sourceforge.net/sqlalchemy/SQLAlchemy-0.6.0.tar.gz?download
-tar -xvf SQLAlchemy-0.6.0.tar.gz 
-cd SQLAlchemy-0.6.0
-python setup.py build
-sudo python setup.py install
+	sudo yum install mysql-devel.x86_64
+
+## install mysql driver for python
+	wget http://sourceforge.net/projects/mysql-python/files/mysql-python-test/1.2.3c1/MySQL-python-1.2.3c1.tar.gz/download
+	tar -xvf MySQL-python-1.2.3c1
+	cd MySQL-python-1.2.3c1
+	python setup.py build
+	sudo python setup.py install
+
+## install SQL Alchemy
+	wget http://prdownloads.sourceforge.net/sqlalchemy/SQLAlchemy-0.6.0.tar.gz?download
+	tar -xvf SQLAlchemy-0.6.0.tar.gz 
+	cd SQLAlchemy-0.6.0
+	python setup.py build
+	sudo python setup.py install
+
 }}}
 test/basic command:
 {{{
