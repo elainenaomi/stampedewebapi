@@ -67,6 +67,9 @@ mysql -u root -p
 yum -y install subversion
 sudo svn co https://www.cs.usfca.edu/svn/netlogger /var/local/netloggerAPI
 sudo ln -s /var/local/netloggerAPI/ /var/www/netloggerAPI
+sudo mkdir /var/www/egg/
+
+
 }}}
 ===Install easy_install ( python setup tools)===
 {{{       
