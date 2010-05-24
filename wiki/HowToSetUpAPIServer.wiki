@@ -51,7 +51,7 @@ mongo
 }}}
 ===Install mySQL DB===
 {{{
-sudo yum install mysql         
+sudo yum install mysql mysql-server     
 }}}
 test/basic command:
 {{{
@@ -66,9 +66,10 @@ mysql -u root -p
 {{{
 yum -y install subversion
 sudo svn co https://www.cs.usfca.edu/svn/netlogger /var/local/netloggerAPI
+sudo svn co https://bosshog.lbl.gov/repos/netlogger/trunk /var/local/netlogger
 sudo ln -s /var/local/netloggerAPI/ /var/www/netloggerAPI
 sudo mkdir /var/www/egg/
-sudo chown apache:apache egg/
+sudo chown apache:apache /var/www/egg/
 
 }}}
 ===Install easy_install ( python setup tools)===
