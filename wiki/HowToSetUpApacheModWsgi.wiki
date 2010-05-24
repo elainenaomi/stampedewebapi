@@ -10,16 +10,17 @@
 {{{
       LoadModule wsgi_module modules/mod_wsgi.so
 
-      WSGIScriptAlias / /var/www/netloggerAPI/dispatcher.py/
-      WSGIPythonPath /var/www/netloggerAPI/
-      WSGIRestrictStdout Off
-      Alias /static /var/www/netloggerAPI/static/
-      AddType text/html .py
+     WSGIScriptAlias / /var/www/netloggerAPI/dispatcher.py/
+     WSGIPythonPath /var/www/netloggerAPI/
+     WSGIPythonEggs /var/www/egg/
+     WSGIRestrictStdout Off
+     Alias /static /var/www/netloggerAPI/static/
+     AddType text/html .py
 
-      <Directory /var/www/netloggerAPI/>
-          Order deny,allow
-          Allow from all
-      </Directory>
+    <Directory /var/www/netloggerAPI/>
+        Order deny,allow
+        Allow from all 
+    </Directory>
 }}}
 
   # create symlink from /var/www/netloggerAPI to your code base. For example:
