@@ -53,7 +53,6 @@ register_viz_glidein_8_0
 = Class && Implemented method =
 
 == Workflow ==
-
 || *property* || *return* ||
 ||initialize(wf_id)|| Init workflow ||
 ||wf_uuid|| wf_uuid for this workflow ||
@@ -77,25 +76,29 @@ register_viz_glidein_8_0
 ||restarted_jobs|| Return the number of jobs that were restarted. ||
 ||submitted_jobs|| Return the number of jobs that were submitted. ||
 ||jobtypes_executed|| Returns a dictionary of the various jobtypes that are executed in the current workflow and a count of how many of each type. ||
-  
+
 == Job ==
 
 || *property* || *return* ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
+|| _sql_initialize(wf_id, job_id): || private initialization method that accepts the wf_id and job_id as primary key ( different from stampede api!) ||
+|| job_submit_seq || job_submit_seq of current job (an input arg). ||
+|| name || Return the job name from the storage backend. ||
+|| host || Return job host information from storage backend. ||
+|| condor_id || Return the condor_id from the storage backend. ||
+|| jobtype || Return jobtype from the storage backend. ||
+|| clustered || Return the clustered boolean flag from the storage backend.  This may need to be derived depending on how the backend implementation does/not store this value. ||
+|| site_name || Return the site name from the storage backend. ||
+|| remote_user || Return the remote use of the current job from the storage backend. ||
+|| remote_working_dir || Return the remote working directory of the current job from the storage backend. ||
+|| cluster_start_time || Return the job cluster start time as a python datetime object (utc) if it exists or None if it does not.  Not all jobs will have this value. ||
+|| cluster_duration || Return the job cluster duration from the storage backend as a float or None if this value is not assocaited with the current job.  Not all job will have this value. ||
+|| task || Returns a list of the tasks associated with this job object. ||
+|| is_restart || Return a boolean flag indicating whether or not this curent job is a "restart". ||
+|| is_success || Return a boolean flag indicating whether or not this curent job was successful.  This value will be derived from backend information as appropriate. ||
+|| is_failure || Return a boolean flag indicating whether or not this curent job has failed.  This value will be derived from backend information as appropriate. ||
+|| current_state || Return the current state of this job.  This property pretty much requires lazy evaluation every access rather than attribute caching. ||
+|| submit_time || Return the timestamp of when this job was submitted. ||
+|| elapsed_time || Return the elapsed time of this job.  Calculated as the delta between the submit time and the current/last jobstate timestamp. ||
 
 == Jobstate ==
 
