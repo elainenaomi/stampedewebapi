@@ -14,8 +14,6 @@ options = {"host": "localhost",
 }
 }}}
 
-
-
 = How to use mongoAPI =
 Code
 {{{
