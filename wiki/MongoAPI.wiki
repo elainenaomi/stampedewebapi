@@ -80,6 +80,22 @@ register_viz_glidein_8_0
   
 == Job ==
 
+|| *property* || *return* ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
 
 == Jobstate ==
 
@@ -90,6 +106,17 @@ register_viz_glidein_8_0
 
 == Host ==
 
+|| *property* || *return* ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
+|| xxx || yyy ||
 
 == Task ==
 
