@@ -1,0 +1,53 @@
+#summary How to use mongo_test to compare value between sql_alchemy and mongo API.
+= Usage =
+Create connection to both Mongo and Sql-alchemy modules then compare value on each property.
+
+== Code ==
+{{{
+from netlogger.analysis.workflow.sql_alchemy import Workflow as sql_workflow
+from netlogger.analysis.workflow.mongo_workflow import Workflow as mongo_workflow
+from netlogger.analysis.workflow.api_test import test_workflow_types
+
+
+options = {"host": "localhost",
+"database": "application",
+"collection": "netlogger",
+"port": 27017	
+		  }
+
+s_workflow = sql_workflow('mysql://root:@localhost/pegasusMontage')
+m_workflow = mongo_workflow(options)
+
+wf_id = '5117013a-f7f1-4bc5-a2f8-517186599fad'
+
+s_workflow.initialize(wf_id)
+m_workflow.initialize(wf_id)
+
+test_workflow_value(m_workflow,s_workflow)
+}
+}}}
+
+== Return ==
+Return format 
+Fail: 'err msg'
+	Mongo: #mongo's result
+	SQL: #sql's result
+
+{{{
+Fail restarted_jobs
+        Mongo: 9
+        SQL: 3
+Fail: invalid tasks number:1 , 4 
+Fail: invalid tasks number:1 , 4 
+Fail cluster_duration
+        Mongo: 15.758
+        SQL: 16.0
+Fail: invalid tasks number:4 , 10 
+Fail cluster_duration
+        Mongo: 19.074
+        SQL: 19.0
+Fail: invalid tasks number:4 , 10 
+Fail cluster_duration
+        Mongo: 21.836
+        SQL: 22.0
+}}}
