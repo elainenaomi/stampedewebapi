@@ -1,11 +1,10 @@
 #summary How to use mongo API base on STAMPEDE API specification.
 = Basic parameters =
 Similar to stampede connString. Mongo API required information to connect to the host server. 
-host		: mongo host server
-database	: database name	
-collection	: collection name
-port		: port number
-
+`host		: mongo host server`
+`database	: database name`
+`collection	: collection name`
+`port		: port number`
 {{{
 options = {"host": "localhost",
 "database": "application",
