@@ -1,13 +1,37 @@
-#This page describes method of mongo API base on STAMPEDE API specification.
-#summary How to load the MongoDB and special considerations
-= Introduction =
-  
+#How to use mongo API base on STAMPEDE API specification.
+= Basic parameters =
+Similar to stampede connString. Mongo API required information to connect to the host server. 
+ 
+host		: mongo host server
+database	: database name	
+collection	: collection name
+port		: port number
+
+{{{
+options = {"host": "localhost",
+"database": "application",
+"collection": "netlogger",
+"port": 27017	
+}
+}}}
 
 
 
-= Details =
+= How to use mongoAPI =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+{{{
+from netlogger.analysis.workflow.mongo_workflow import Workflow as mongo_workflow
+options = {"host": "localhost",
+"database": "application",
+"collection": "netlogger",
+"port": 27017	
+}
+workflow = mongo_workflow(options)				## Create connection to mongo db.
+workflow.initialize('5117013a-f7f1-4bc5-a2f8-517186599fad')	## Init workflow object from mongo db by using wf_id.
+
+print workflow			## Show workflow information
+for job in workflow.jobs	## Iterate in jobs list
+	print job.host		## Show host information for each job
+								
+
+}}}
