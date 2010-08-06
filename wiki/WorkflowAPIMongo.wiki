@@ -1,4 +1,4 @@
-#How to use mongo API base on STAMPEDE API specification.
+#summary How to use mongo API base on STAMPEDE API specification.#
 = Basic parameters =
 Similar to stampede connString. Mongo API required information to connect to the host server. 
  
