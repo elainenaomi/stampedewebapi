@@ -1,4 +1,4 @@
-#summary How to use mongo_test to compare value between sql_alchemy and mongo API.
+#summary How to use mongo_test API to compare value between sql_alchemy and mongo API.
 = Usage =
 Create connection to both Mongo and Sql-alchemy modules then compare value on each property.
 
@@ -24,7 +24,7 @@ s_workflow.initialize(wf_id)
 m_workflow.initialize(wf_id)
 
 test_workflow_value(m_workflow,s_workflow)
-}
+
 }}}
 
 == Return ==
