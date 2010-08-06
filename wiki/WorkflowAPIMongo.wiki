@@ -26,10 +26,10 @@ options = {"host": "localhost",
 workflow = mongo_workflow(options)				## Create connection to mongo db.
 workflow.initialize('5117013a-f7f1-4bc5-a2f8-517186599fad')	## Init workflow object from mongo db by using wf_id.
 
-#print workflow			## Show workflow information
-for job in workflow.jobs:	## Iterate in jobs list
-	if job.is_failure:		## print only failure job.
-	print job.job_submit_seq,job.name		## Print job's id and name
+#print workflow					## Show workflow information
+for job in workflow.jobs:			## Iterate in jobs list
+	if job.is_failure:			## print only failure job.
+	print job.job_submit_seq,job.name	## Print job's id and name
 }}}
 
 Return
