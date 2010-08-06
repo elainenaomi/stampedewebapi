@@ -26,25 +26,23 @@ options = {"host": "localhost",
 workflow = mongo_workflow(options)				## Create connection to mongo db.
 workflow.initialize('5117013a-f7f1-4bc5-a2f8-517186599fad')	## Init workflow object from mongo db by using wf_id.
 
-print workflow			## Show workflow information
-for job in workflow.jobs	## Iterate in jobs list
-	print job.name		## Print job's name of each job
+#print workflow			## Show workflow information
+for job in workflow.jobs:	## Iterate in jobs list
+	if job.is_failure:		## print only failure job.
+	print job.job_submit_seq,job.name		## Print job's id and name
 }}}
 
 Return
 {{{
-create_dir_montage_0_viz_glidein
-stage_in_viz_glidein_0
-merge_mProjectPP-3.0_PID1_ID3
-merge_mProjectPP-3.0_PID1_ID2
-merge_mProjectPP-3.0_PID1_ID1
-merge_mProjectPP-3.0_PID1_ID4
-...
-...
-...
-register_viz_glidein_8_0
-register_viz_glidein_7_0
-register_viz_glidein_8_0
+21 register_viz_glidein_6_0
+24 register_viz_glidein_6_0
+26 register_viz_glidein_6_0
+27 register_viz_glidein_7_0
+28 register_viz_glidein_8_0
+29 register_viz_glidein_7_0
+30 register_viz_glidein_8_0
+31 register_viz_glidein_7_0
+32 register_viz_glidein_8_0
 }}}
 
 
