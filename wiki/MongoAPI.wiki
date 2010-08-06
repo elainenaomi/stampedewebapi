@@ -110,16 +110,12 @@ register_viz_glidein_8_0
 == Host ==
 
 || *property* || *return* ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
-|| xxx || yyy ||
+|| _sql_initialize( wf_id, job_id) || private initialization method that accepts the wf_id and job_id as primary key ( different from stampede api!)||
+|| site_name || Return the site name associated with this host. ||
+|| hostname || Return host name ||
+|| ip_address || Return the ip address  ||
+|| uname || Return the uname information of this host machine. ||
+|| total_ram || Return the total ram of this host machine. ||
 
 == Task ==
 
