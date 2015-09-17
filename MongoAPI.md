@@ -1,0 +1,35 @@
+# Accessing the Mongo Database #
+
+Querying the Mongo database is very simple and straightforward. There is a simple layer that you can use called 'models/MongoConnection.py'. In order to make queries, you must make a connection like so:
+```
+connection = MongoConnection.MongoConnection?(options["dbname"], options["dbhost"])
+```
+Look at the methods that are contained within 'MongoConnection'. They all follow the same general pattern in terms of parameters. The first parameter is always which collection you want to reference.
+
+The most common use is to make queries. Queries are done by sending a dictionary with key:value pairs to be searched. Look at the pyMongo documentation for more information about how to make queries: http://api.mongodb.org/python/1.1.1%2B/index.html
+
+# Mongo Loader #
+First update your NetLogger distribution from svn at https://bosshog.lbl.gov/repos/netlogger/trunk/python.
+
+The mongo loader is just another module that can be used from nl\_load. For more information about nl\_load:
+```
+nl_load --help
+```
+To get a list of modules, use the "-l" option
+```
+nl_load -l
+Available modules:
+bp, buffered_loader, couchdb, csv, mongodb, nl_sql, noop, stampede_loader
+```
+To use the latest loader, make sure you netlogger checkout is up to date. Then (for example);
+```
+nl_load -f <filename> mongodb host=<mongo_host> database=<new_mongodb_name> collection=<collection_name>
+```
+To make queries faster, you can specify a list of columns that you want to be indexed like so:
+```
+nl_load -f <filename> mongo_loader host=<mongo_host> database=<new_mongodb_name> collection=<collection_name> indices=timestamp,name,wf_uuid"
+```
+For a full list of options on this or any other loader module, use the "-i" option:
+```
+nl_loader -i mongodb
+```

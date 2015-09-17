@@ -1,0 +1,128 @@
+# Basic parameters #
+Similar to stampede connString. Mongo API required information to connect to the host server.
+  * host		: mongo host server
+  * database	: database name
+  * collection	: collection name
+  * port		: port number
+```
+options = {"host": "localhost",
+"database": "application",
+"collection": "netlogger",
+"port": 27017	
+}
+```
+
+# How to use mongoAPI #
+Code
+```
+from netlogger.analysis.workflow.mongo_workflow import Workflow as mongo_workflow
+options = {"host": "localhost",
+"database": "application",
+"collection": "netlogger",
+"port": 27017	
+}
+workflow = mongo_workflow(options)				## Create connection to mongo db.
+workflow.initialize('5117013a-f7f1-4bc5-a2f8-517186599fad')	## Init workflow object from mongo db by using wf_id.
+
+#print workflow					## Show workflow information
+for job in workflow.jobs:			## Iterate in jobs list
+   if job.is_failure:				## print only failure job.
+	print job.job_submit_seq,job.name	## Print job's id and name
+```
+
+Return
+```
+21 register_viz_glidein_6_0
+24 register_viz_glidein_6_0
+26 register_viz_glidein_6_0
+27 register_viz_glidein_7_0
+28 register_viz_glidein_8_0
+29 register_viz_glidein_7_0
+30 register_viz_glidein_8_0
+31 register_viz_glidein_7_0
+32 register_viz_glidein_8_0
+```
+
+
+# Class && Implemented method #
+
+## Workflow ##
+| **property** | **return** |
+|:-------------|:-----------|
+|initialize(wf\_id)| Init workflow |
+|wf\_uuid      | wf\_uuid for this workflow |
+|dax\_label    | dax\_label from storage backend |
+|timestamp     | timestamp from storage backend. |
+|submit\_hostname| submit\_hostname from storage backend. |
+|submit\_dir   | submit\_dir from storage backend. |
+|planner\_arguments| planner\_argumentstimestamp from storage backend. |
+|user          | user from storage backend. |
+|grid\_dn      | grid\_dn from storage backend. |
+|planner\_version| planner\_version from storage backend. |
+|parent\_wf\_uuid| parent\_wf\_uuid from storage backend. |
+|is\_running   | Derived boolean flag indicating if the workflow is currently running.  Derived in a backend-appropriate way. |
+|start\_time   | Return the start\_time from the storage backend. Should be returned as a python utc datetime object or None |
+|end\_time     |Return the end\_time from the storage backend. Should be returned as a python utc datetime object or None |
+|elapsed\_time | A derived value of the elapsed time of the current workflow returned as a python timedelta object.  This could be calculated as the delta between the start and end times if the workflow is complete or between the start and current time if it is not |
+|jobs          | Returns a list of the jobs associated with this workflow object. |
+|total\_jobs\_executed| Return the number of jobs that were executed as an integer value. |
+|successful\_jobs| Return the number of jobs that executed successfully as an integer value.|
+|failed\_jobs  | Return the number of jobs that failed as an integer value. |
+|restarted\_jobs| Return the number of jobs that were restarted. |
+|submitted\_jobs| Return the number of jobs that were submitted. |
+|jobtypes\_executed| Returns a dictionary of the various jobtypes that are executed in the current workflow and a count of how many of each type. |
+
+## Job ##
+
+| **property** | **return** |
+|:-------------|:-----------|
+| _sql\_initialize(wf\_id, job\_id):_| private initialization method that accepts the wf\_id and job\_id as primary key ( different from stampede api!) |
+| job\_submit\_seq | job\_submit\_seq of current job (an input arg). |
+| name         | Return the job name from the storage backend. |
+| host         | Return job host information from storage backend. |
+| condor\_id   | Return the condor\_id from the storage backend. |
+| jobtype      | Return jobtype from the storage backend. |
+| clustered    | Return the clustered boolean flag from the storage backend.  This may need to be derived depending on how the backend implementation does/not store this value. |
+| site\_name   | Return the site name from the storage backend. |
+| remote\_user | Return the remote use of the current job from the storage backend. |
+| remote\_working\_dir | Return the remote working directory of the current job from the storage backend. |
+| cluster\_start\_time | Return the job cluster start time as a python datetime object (utc) if it exists or None if it does not.  Not all jobs will have this value. |
+| cluster\_duration | Return the job cluster duration from the storage backend as a float or None if this value is not assocaited with the current job.  Not all job will have this value. |
+| task         | Returns a list of the tasks associated with this job object. |
+| is\_restart  | Return a boolean flag indicating whether or not this curent job is a "restart". |
+| is\_success  | Return a boolean flag indicating whether or not this curent job was successful.  This value will be derived from backend information as appropriate. |
+| is\_failure  | Return a boolean flag indicating whether or not this curent job has failed.  This value will be derived from backend information as appropriate. |
+| current\_state | Return the current state of this job.  This property pretty much requires lazy evaluation every access rather than attribute caching. |
+| submit\_time | Return the timestamp of when this job was submitted. |
+| elapsed\_time | Return the elapsed time of this job.  Calculated as the delta between the submit time and the current/last jobstate timestamp. |
+
+## Jobstate ##
+
+| **property** | **return** |
+|:-------------|:-----------|
+|_sql\_initialize(wf\_id, job\_id):_| private initialization method that accepts the wf\_id and job\_id as primary key ( different from stampede api!)|
+| state        | Return the current jobstate state.  Might be none if there is no state information logged yet. |
+| timestamp    | Return the timestampe of the current job state.  Might be none if there is no state information logged yet. |
+
+## Host ##
+
+| **property** | **return** |
+|:-------------|:-----------|
+| _sql\_initialize( wf\_id, job\_id)_| private initialization method that accepts the wf\_id and job\_id as primary key ( different from stampede api!)|
+| site\_name   | Return the site name associated with this host. |
+| hostname     | Return host name |
+| ip\_address  | Return the ip address  |
+| uname        | Return the uname information of this host machine. |
+| total\_ram   | Return the total ram of this host machine. |
+
+## Task ##
+
+| **property** | **return** |
+|:-------------|:-----------|
+| _sql\_initialize(wf\_id, job\_id, task\_id)_| private initialization method that accepts the wf\_id, job\_id, task\_id as primary key ( different from stampede api!) |
+| start\_time  | Return start time of this task from the storage backend as a python datetime object (utc). |
+| duration     | Return duration of this task from the storage backend as a float. |
+| exitcode     | Return the exitcode of this task from the storage backend as an integer. |
+| transformation | Return the transformation type of this task from the storage backend. |
+| executable   | Return the executable invoked by this task from the storage backend. |
+| arguments    | Return the task args from the storage backend. |
